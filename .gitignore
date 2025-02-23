@@ -1,0 +1,32 @@
+# Ignore environment variables
+.env
+
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+
+# Virtual environment
+venv/
+env/
+
+# Package management
+pip-log.txt
+pip-delete-this-directory.txt
+
+# Log files
+*.log
+
+# Ignore system-specific files
+.DS_Store
+Thumbs.db
+
+# Streamlit cache
+.streamlit/
+
+# Ignore IDE files
+.vscode/
+.idea/
+*.swp
+*.swo
+*.bak
+*.tmp

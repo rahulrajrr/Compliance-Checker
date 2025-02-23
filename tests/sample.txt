@@ -1,0 +1,57 @@
+**AI Python Developer Assessment**
+## 1. Project Overview
+The objective of this assessment is to evaluate the candidate’s ability to develop an AI-powered
+system that processes document files and checks compliance against English guidelines. The
+system should consist of:
+- A Python-based API to accept input files (PDF or Word)
+- An AI agent to assess the document against given English guidelines
+- An interactive feature allowing users to request guideline-compliant modifications
+## 2. Scope of Work
+### API Development:
+- Develop an API endpoint in any Python web framework (Flask, FastAPI, Django, etc.) to
+accept PDF or Word document uploads.
+- Ensure secure file upload handling and validation.
+- Process the uploaded document for further analysis.
+### AI Agent Implementation:
+- Create an AI agent that checks if the uploaded document complies with the given English
+guidelines.
+- The agent should parse the document, evaluate grammar, sentence structure, clarity, and
+adherence to writing rules.
+- The agent should return a detailed report specifying compliance or violations of guidelines.
+### User Interaction & Compliance Correction:
+- Enable a feature where users can request the AI agent to modify the document to comply with
+guidelines.
+- The modified document should be available for download.
+### Testing & Validation:
+- Implement unit and integration tests to ensure system functionality.
+- Validate the AI agent’s performance by testing with various document samples.
+- Ensure API endpoints function correctly with different file formats.
+## 3. Technical Considerations
+### API Development:
+- Use a Python framework like Flask, FastAPI, or Django.
+- Ensure efficient and secure handling of file uploads.
+- Implement necessary validation and error handling.
+### AI Model Implementation:
+- Utilize NLP models such as OpenAI GPT, spaCy, or LanguageTool for guideline checking.
+- Process text from PDF and Word documents efficiently.
+- Generate meaningful compliance reports based on detected errors.
+### Performance Optimization:
+- Optimize text extraction and NLP processing for large documents.
+- Ensure API response times remain minimal.
+## 4. Deliverables
+- A Python-based API that accepts PDF/Word document uploads.
+- An AI agent capable of assessing guideline compliance.
+- Test reports with validation results.
+## 5. Timeline
+Candidates are expected to complete this assessment within **3 days**. Submit the project via
+a public GitHub repository and share the URL.
+## 6. Risk Assessment
+- **Accuracy of AI Model:** The AI agent may not perfectly detect all compliance issues.
+Mitigation includes using well-trained NLP models and refining rule sets.
+- **Performance Issues:** Processing large files may cause slow responses. Efficient algorithms
+and caching strategies can help optimize performance.
+## 7. Conclusion
+This assessment requires candidates to demonstrate expertise in Python API development,
+AI-powered text analysis, and interactive system design. A well-executed solution should be
+functional, efficient, and secure, showcasing the candidate’s ability to develop AI-driven
+applications.

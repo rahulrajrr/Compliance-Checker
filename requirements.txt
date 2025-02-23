@@ -1,0 +1,13 @@
+fastapi
+uvicorn
+python-multipart
+aiofiles
+autogen
+python-docx
+pypdf
+easyocr
+pdf2image
+streamlit
+reportlab
+pymupdf
+pytest
