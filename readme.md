@@ -52,3 +52,5 @@ streamlit run streamlit_ui.py
 ## API Endpoints
 | POST   | 127.0.0.1:8000/upload  | Uploads a document for analysis |
 
+![Screenshot 1](images/file_upload.jpg)
+![Screenshot 2](images/UI.png)
