@@ -52,5 +52,5 @@ streamlit run streamlit_ui.py
 ## API Endpoints
 | POST   | 127.0.0.1:8000/upload  | Uploads a document for analysis |
 
-![Screenshot 1] https://github.com/rahulrajrr/Compliance-Checker/blob/main/images/file_upload.jpg?raw=true
-![Screenshot 2]https://github.com/rahulrajrr/Compliance-Checker/blob/main/images/UI.png?raw=true
+![Screenshot 1](https://raw.githubusercontent.com/rahulrajrr/Compliance-Checker/main/images/file_upload.jpg)
+![Screenshot 2](https://raw.githubusercontent.com/rahulrajrr/Compliance-Checker/main/images/UI.png)
