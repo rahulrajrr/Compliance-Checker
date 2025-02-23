@@ -50,5 +50,5 @@ streamlit run streamlit_ui.py
 
 
 ## API Endpoints
-| POST   | /upload  | Uploads a document for analysis |
+| POST   | 127.0.0.1:8000/upload  | Uploads a document for analysis |
 
