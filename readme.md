@@ -28,7 +28,7 @@ Document Compliance Checker is a robust Python-based application designed to ana
 ## Technology Stack
 - **Backend:** FastAPI  
 - **Frontend:** Streamlit  
-- **AI Processing:** Groq  
+- **AI Processing:** Groq (LLM), Autogen (Agents)
 - **Document Handling:** python-docx, pypdf  
 
 ## Installation & Setup
