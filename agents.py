@@ -90,35 +90,52 @@ def process_document(file_path, modify=False):
 
     # Step 1: Compliance check
     compliance_prompt = f"""
-    Perform a comprehensive compliance analysis of the following document. 
-    Evaluate it based on the following criteria:
-    
-    1. **Grammar & Syntax**: Identify grammatical mistakes, awkward phrasing, or improper syntax.
-    2. **Clarity & Readability**: Assess how easy it is to understand. Suggest improvements for better readability.
-    3. **Logical Flow & Structure**: Check for coherence, proper organization, and logical progression of ideas.
-    4. **Compliance with Professional Standards**: Ensure adherence to formal writing guidelines and industry best practices.
-    5. **Potential Issues & Recommendations**: Highlight major concerns and provide detailed, actionable suggestions for improvement.
-    
+    Perform a **sentence-by-sentence** compliance analysis of the following document. 
+
+    For each sentence:
+    1. Identify **grammar, syntax, clarity, and structure** issues.
+    2. Explain what is incorrect.
+    3. Don't give the correct version of answers. 
+
+    ### **Format the response as follows:**
+    **Sentence:** "<exact sentence from the document>"
+    - **Issue:** <Describe the problem>
+    ---
+    (Ensure to separate each sentence and its issues with a "---" for readability.)
+
+    Do NOT give a generic summary. Only return sentence-by-sentence analysis.
+
     Document:
     {text}
     """
+
     compliance_response = compliance_agent.generate_reply(
         messages=[{"role": "user", "content": compliance_prompt}]
     )
 
-    # Step 2: Generate a compliance report
+    # Step 2: Generate a detailed compliance report
     report_prompt = f"""
-    Based on the following compliance analysis, generate a structured, detailed compliance report. 
-    Include:
-    
-    - **Summary of Key Findings**: Briefly summarize the main issues found.
-    - **Detailed Analysis**: Break down compliance violations by category (grammar, structure, readability, etc.).
-    - **Actionable Recommendations**: Provide clear, step-by-step suggestions for improvement.
-    - **Final Compliance Score**: Rate the document's overall quality and adherence on a scale of 1-10.
-    
+    Generate a **comprehensive compliance report** based on the following **sentence-by-sentence** compliance analysis.
+
+    ### **Report Structure:**
+    1. **Summary of Key Findings**  
+    - Provide a **brief overview** of the main issues found in the document.
+
+    2. **Line-by-Line Detailed Analysis**  
+    - For each problematic sentence, include:
+        - **Original Sentence:** "<exact sentence from the document>"
+        - **Issue:** <Explain what is wrong>
+
+    3. **Actionable Recommendations**  
+    - Suggest **general best practices** based on the errors identified.
+
+    4. **Final Compliance Score**  
+    - Rate the document's quality and adherence on a **scale of 1-10** (considering grammar, readability, and professional compliance).
+
     Compliance Analysis:
     {compliance_response}
     """
+
     report_response = report_agent.generate_reply(
         messages=[{"role": "user", "content": report_prompt}]
     )
