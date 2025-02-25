@@ -15,12 +15,21 @@ UPLOAD_FOLDER = "uploads"
 MODIFIED_FOLDER = "modified_documents"
 os.makedirs(MODIFIED_FOLDER, exist_ok=True)
 
+port = os.getenv("PORT", "8501")
+
 st.set_page_config(
     page_title="Compliance Checker", layout="wide", initial_sidebar_state="expanded"
 )
 
+# Initialize chat history
+if "chat_history" not in st.session_state:
+    st.session_state.chat_history = {}
+
 # Sidebar UI
 with st.sidebar:
+    # Add Logo
+    st.image("logo.png", width=180)
+
     st.markdown(
         """
         <style>
@@ -42,7 +51,15 @@ with st.sidebar:
         unsafe_allow_html=True,
     )
 
-# Fix Button UI
+    # Chat History Section
+    st.subheader("📜 Chat History")
+
+    for subject, messages in st.session_state.chat_history.items():
+        with st.expander(subject):
+            for msg in messages:
+                st.markdown(f"✅ {msg}")
+
+# UI Styling
 st.markdown(
     """
     <style>
@@ -71,14 +88,10 @@ st.markdown(
 if "modify_clicked" not in st.session_state:
     st.session_state.modify_clicked = False
 
-
 st.markdown(
     """
     <style>
-    /* Hide the file uploader's size limit text */
-    div.stFileUploader small {
-        display: none;
-    }
+    div.stFileUploader small { display: none; }
     </style>
     """,
     unsafe_allow_html=True,
@@ -97,7 +110,6 @@ if uploaded_file:
     with col1:
         st.info(f"**Uploaded File:** {uploaded_file.name}")
 
-    # Improved Loading State Handling
     st.markdown("🔄 **Processing file...** Please wait.", unsafe_allow_html=True)
 
     # Uploading the file
@@ -120,6 +132,12 @@ if uploaded_file:
                 else:
                     raise ValueError("Invalid report format")
 
+                # Save conversation to history
+                subject = uploaded_file.name
+                if subject not in st.session_state.chat_history:
+                    st.session_state.chat_history[subject] = []
+                st.session_state.chat_history[subject].append(compliance_text)
+
                 # Display Compliance Report
                 st.subheader("Compliance Report")
                 st.markdown(
@@ -131,7 +149,6 @@ if uploaded_file:
                 st.subheader(
                     "Do you want to modify the document to comply with guidelines?"
                 )
-                # Custom CSS to make the button normal-sized
                 st.markdown(
                     """
                     <style>
@@ -139,7 +156,7 @@ if uploaded_file:
                         width: auto;
                         padding: 8px 16px;
                         font-size: 16px;
-                        background-color: #4CAF50; /* Green */
+                        background-color: #4CAF50;
                         color: white;
                         border-radius: 5px;
                         border: none;
@@ -149,7 +166,6 @@ if uploaded_file:
                     unsafe_allow_html=True,
                 )
 
-                # Regular Streamlit button
                 if st.button("Modify Document", key="modify_btn"):
                     st.session_state.modify_clicked = True
 
