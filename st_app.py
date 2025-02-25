@@ -44,10 +44,17 @@ with st.sidebar:
 st.markdown(
     """
     <style>
-        div.stButton > button { width: 100%; border-radius: 8px; font-size: 16px; padding: 10px; background-color: #4CAF50; color: white; }
+        div.stButton > button {
+            width: auto !important;
+            font-size: 16px !important;
+            padding: 8px 16px !important;
+            border-radius: 6px !important;
+            background-color: #4CAF50 !important;
+            color: white !important;
+        }
         .css-18e3th9 { background-color: #f8f9fa; border-radius: 10px; padding: 20px; }
     </style>
-""",
+    """,
     unsafe_allow_html=True,
 )
 
@@ -65,13 +72,18 @@ st.markdown(
     unsafe_allow_html=True,
 )
 
-uploaded_file = st.file_uploader("Upload a PDF or Word document", type=["pdf", "docx"])
+uploaded_file = st.file_uploader("Upload a PDF or Word document")
 
 if uploaded_file:
+    file_extension = os.path.splitext(uploaded_file.name)[-1].lower()
+    
+    if file_extension not in [".pdf", ".docx"]:
+        st.error("❌ Invalid file type! Please upload a PDF or Word document (.pdf or .docx).")
+        st.stop()
+
     st.session_state.modify_clicked = False
     file_path = os.path.join(UPLOAD_FOLDER, uploaded_file.name)
     
-    # Save uploaded file locally
     with open(file_path, "wb") as f:
         f.write(uploaded_file.getbuffer())
 
